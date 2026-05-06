@@ -2011,13 +2011,13 @@
           <div class="m-eyebrow">Step 2 of 3</div>
           <div class="m-title">Upload Photos</div>
           <div class="m-sub">
-            4 JPEG photos per category — complete at least 1 category
+            1-4 JPEG photos per category — complete at least 1 category
           </div>
           <div class="m-divider"></div>
 
           <div class="notice-box">
             <strong>How it works</strong>
-            Photos upload directly to Google Drive. You need to complete all 4
+            Photos upload directly to Google Drive. You need to complete 1-4
             slots in at least one category to continue.
           </div>
 
@@ -2052,9 +2052,7 @@
                 </div>
               </div>
             </div>
-            <div class="cat-err" id="color-err">
-              Please upload all 4 photos or leave this category empty.
-            </div>
+            
           </div>
 
           <!-- Monochrome -->
@@ -2088,9 +2086,7 @@
                 </div>
               </div>
             </div>
-            <div class="cat-err" id="mono-err">
-              Please upload all 4 photos or leave this category empty.
-            </div>
+            
           </div>
 
           <!-- Mobile -->
@@ -2124,9 +2120,7 @@
                 </div>
               </div>
             </div>
-            <div class="cat-err" id="mobile-err">
-              Please upload all 4 photos or leave this category empty.
-            </div>
+            
           </div>
 
           <input
@@ -2135,9 +2129,7 @@
             accept="image/jpeg"
             style="display: none"
           />
-          <div class="cat-err" id="min-cat-err" style="margin-top: 0.8rem">
-            Please complete at least one full category (4 photos).
-          </div>
+          
           <button
             class="step-btn"
             id="photos-next-btn"
@@ -2501,13 +2493,8 @@
 
           ["color", "mono", "mobile"].forEach((cat) => {
             const count = uploads[cat].filter(Boolean).length;
-            if (count > 0 && count < 4) {
-              document.getElementById(cat + "-err").classList.add("show");
-              valid = false;
-            } else {
-              document.getElementById(cat + "-err").classList.remove("show");
-            }
-            if (count === 4) atLeastOne = true;
+            document.getElementById(cat + "-err").classList.remove("show");
+            if (count > 0) atLeastOne = true;
           });
 
           if (!atLeastOne) {
