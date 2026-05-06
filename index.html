@@ -1,0 +1,2725 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUMINATE'26</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.cdnfonts.com/css/lemonmilk" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+      body {
+        background: #000;
+        color: #fff;
+        font-family: "Lemon Milk", sans-serif;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      ::selection {
+        background: #fff;
+        color: #000;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #fff;
+      }
+      .eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: #888;
+        margin-bottom: 0.6rem;
+        display: block;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-weight: 300;
+        line-height: 1.15;
+      }
+
+      @import url("https://fonts.cdnfonts.com/css/lemonmilk");
+
+      /* NAV */
+      #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 3rem;
+        height: 64px;
+        border-bottom: 1px solid #111;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(12px);
+        transition:
+          background 0.3s,
+          border-color 0.3s;
+      }
+      #nav.scrolled {
+        background: #000;
+        border-color: #1f1f1f;
+      }
+      .nav-logo {
+        font-family: sans-serif;
+        font-size: 0.65rem;
+        font-weight: 300;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .nav-logo img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+      }
+      .nav-logo .logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.3;
+      }
+      .nav-logo .logo-text span {
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+      .nav-logo .logo-text small {
+        font-size: 0.68rem;
+        color: #888;
+        letter-spacing: 0.2em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #888;
+        transition: color 0.2s;
+        position: relative;
+        padding-bottom: 2px;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 100%;
+        height: 1px;
+        background: #fff;
+        transition: right 0.25s ease;
+      }
+      .nav-links a:hover {
+        color: #fff;
+      }
+      .nav-links a:hover::after {
+        right: 0;
+      }
+      .nav-btn {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        padding: 0.55rem 1.2rem;
+        border: 1px solid #fff;
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        font-family: inherit;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .nav-btn:hover {
+        background: #fff;
+        color: #000;
+      }
+      .nav-btn.solid {
+        background: #fff;
+        color: #000;
+      }
+      .nav-btn.solid:hover {
+        background: transparent;
+        color: #fff;
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 0.7rem;
+        align-items: center;
+      }
+      #hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      #hamburger span {
+        display: block;
+        width: 22px;
+        height: 1px;
+        background: #fff;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      #hamburger.open span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+      #hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      #hamburger.open span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+      #mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 64px 0 0;
+        background: #000;
+        z-index: 8999;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+      }
+      #mobile-menu.open {
+        display: flex;
+      }
+      #mobile-menu a,
+      #mobile-menu button {
+        font-size: 1.1rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #888;
+        transition: color 0.2s;
+        background: none;
+        border: none;
+        font-family: inherit;
+        cursor: pointer;
+      }
+      #mobile-menu a:hover,
+      #mobile-menu button:hover {
+        color: #fff;
+      }
+      @media (max-width: 768px) {
+        .nav-links,
+        .nav-actions {
+          display: none;
+        }
+        #hamburger {
+          display: flex;
+        }
+        #nav {
+          padding: 0 1.5rem;
+        }
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 80px 2rem 4rem;
+        text-align: center;
+        background-image: url(img/Drone\ Shot\ 2.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      .grid-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+      .vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse at center,
+          transparent 1%,
+          #000000 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+      .hero-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 50px;
+      }
+      .hero-title img {
+        width: 750px;
+        height: auto;
+        object-fit: contain;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        padding: 0.9rem 2.2rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition:
+          background 0.25s,
+          color 0.25s;
+        border: 1px solid #fff;
+      }
+      .btn-primary {
+        background: #fff;
+        color: #000;
+      }
+      .btn-primary:hover {
+        background: #000;
+        color: #fff;
+      }
+      .btn-secondary {
+        background: transparent;
+        color: #fff;
+      }
+      .btn-secondary:hover {
+        background: #fff;
+        color: #000;
+      }
+      .scroll-down {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        z-index: 2;
+        animation: fadeIn 2s 1s both;
+      }
+      .scroll-down span {
+        font-size: 0.55rem;
+        letter-spacing: 0.3em;
+        color: #444;
+        text-transform: uppercase;
+      }
+      .scroll-down .sd-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, #fff, transparent);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 7rem 6vw;
+        position: relative;
+      }
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .section-header {
+        margin-bottom: 4rem;
+      }
+      .section-title {
+        font-family: Georgia, serif;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 400;
+        color: #fff;
+      }
+      .title-line {
+        width: 40px;
+        height: 1px;
+        background: #fff;
+        margin: 1.2rem 0;
+      }
+      .section-sub {
+        color: #666;
+        font-size: 0.9rem;
+        max-width: 560px;
+        line-height: 1.8;
+      }
+      .divider {
+        height: 1px;
+        background: #111;
+        margin: 0 6vw;
+      }
+
+      /* ABOUT */
+      #about {
+        background: #000;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .about-text p {
+        color: #888;
+        line-height: 1.9;
+        margin-bottom: 1.2rem;
+        font-size: 0.95rem;
+      }
+      .about-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+      .stat-card {
+        border: 1px solid #1a1a1a;
+        padding: 1.8rem 1.4rem;
+        transition: border-color 0.25s;
+      }
+      .stat-card:hover {
+        border-color: #fff;
+      }
+      .stat-num {
+        font-family: Georgia, serif;
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 0.3rem;
+      }
+      .stat-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        color: #555;
+        text-transform: uppercase;
+      }
+      @media (max-width: 768px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+      }
+
+      /* LUMINATE */
+      #luminate {
+        background: #050505;
+      }
+      .luminate-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+      .luminate-text p {
+        color: #888;
+        line-height: 1.9;
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+      }
+      .luminate-highlights {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .highlight-item {
+        border-left: 1px solid #222;
+        padding: 1rem 1.4rem;
+        transition: border-color 0.25s;
+      }
+      .highlight-item:hover {
+        border-color: #fff;
+      }
+      .highlight-item h4 {
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 0.4rem;
+      }
+      .highlight-item p {
+        color: #666;
+        font-size: 0.85rem;
+        line-height: 1.7;
+      }
+      @media (max-width: 768px) {
+        .luminate-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* COMMITTEE */
+      #committee {
+        background: #000;
+      }
+      .committee-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+      }
+      .member-card {
+        border: 1px solid #111;
+        padding: 2rem 1.4rem;
+        text-align: center;
+        transition:
+          border-color 0.25s,
+          background 0.25s;
+        cursor: default;
+      }
+      .member-card:hover {
+        border-color: #fff;
+        background: #050505;
+      }
+      .member-avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 1px solid #222;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Georgia, serif;
+        font-size: 1.3rem;
+        background: #0a0a0a;
+      }
+      .member-name {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+      .member-role {
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        color: #555;
+        text-transform: uppercase;
+      }
+
+      /* OTHER COMMITTEE */
+      #other-committee {
+        background: #050505;
+      }
+      .other-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+      }
+      .other-card {
+        border: 1px solid #111;
+        padding: 1.4rem 1rem;
+        text-align: center;
+        transition: border-color 0.25s;
+      }
+      .other-card:hover {
+        border-color: #fff;
+      }
+      .other-card .oc-name {
+        font-size: 0.85rem;
+        margin-bottom: 0.2rem;
+      }
+      .other-card .oc-role {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        color: #555;
+        text-transform: uppercase;
+      }
+
+      /* SUBMISSIONS */
+      #submissions {
+        background: #000;
+      }
+      .countdown-wrap {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+        flex-wrap: wrap;
+      }
+      .cd-block {
+        flex: 1;
+        min-width: 100px;
+        border: 1px solid #1a1a1a;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+      .cd-num {
+        font-family: Georgia, serif;
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 300;
+        line-height: 1;
+        display: block;
+      }
+      .cd-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        color: #555;
+        text-transform: uppercase;
+        margin-top: 0.5rem;
+        display: block;
+      }
+      .submissions-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+      .sub-info p {
+        color: #888;
+        line-height: 1.9;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+      @media (max-width: 768px) {
+        .submissions-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* CATEGORIES */
+      #categories {
+        background: #050505;
+      }
+      .cat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+      }
+      .cat-card {
+        border: 1px solid #111;
+        padding: 2.2rem 1.8rem;
+        transition:
+          border-color 0.25s,
+          background 0.25s;
+        position: relative;
+        overflow: hidden;
+        cursor: default;
+      }
+      .cat-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.02) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .cat-card:hover::before {
+        opacity: 1;
+      }
+      .cat-card:hover {
+        border-color: #fff;
+      }
+      .cat-num {
+        font-family: Georgia, serif;
+        font-size: 3rem;
+        color: #1a1a1a;
+        font-weight: 300;
+        position: absolute;
+        top: 1rem;
+        right: 1.4rem;
+        line-height: 1;
+      }
+      .cat-name {
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+      .cat-desc {
+        font-size: 0.8rem;
+        color: #666;
+        line-height: 1.7;
+      }
+
+      /* GUIDELINES */
+      #guidelines {
+        background: #000;
+      }
+      .guidelines-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+      .guideline-group h3 {
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #fff;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #1a1a1a;
+      }
+      .guideline-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .guideline-list li {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        font-size: 0.85rem;
+        color: #888;
+        line-height: 1.7;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #0d0d0d;
+        transition: color 0.2s;
+      }
+      .guideline-list li:hover {
+        color: #fff;
+      }
+      .g-num {
+        font-family: Georgia, serif;
+        font-size: 0.7rem;
+        color: #333;
+        flex-shrink: 0;
+        padding-top: 0.1rem;
+      }
+      @media (max-width: 768px) {
+        .guidelines-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* MODAL BASE */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      .modal-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .modal-box {
+        background: #000;
+        border: 1px solid #1f1f1f;
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.06),
+          0 40px 80px rgba(0, 0, 0, 0.9);
+        width: min(560px, 94vw);
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 2.8rem 2.4rem 2.4rem;
+        position: relative;
+        transform: translateY(20px) scale(0.98);
+        transition:
+          transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1),
+          opacity 0.3s;
+        opacity: 0;
+      }
+      .modal-overlay.open .modal-box {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      .modal-close {
+        position: absolute;
+        top: 1.2rem;
+        right: 1.4rem;
+        background: none;
+        border: none;
+        color: #444;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 4px 8px;
+        transition: color 0.2s;
+        line-height: 1;
+      }
+      .modal-close:hover {
+        color: #fff;
+      }
+      .m-eyebrow {
+        font-size: 0.6rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: #555;
+        margin-bottom: 0.4rem;
+      }
+      .m-title {
+        font-family: Georgia, serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-bottom: 0.3rem;
+      }
+      .m-sub {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        color: #444;
+        margin-bottom: 1.6rem;
+      }
+      .m-divider {
+        height: 1px;
+        background: linear-gradient(to right, #fff, transparent);
+        margin-bottom: 1.8rem;
+      }
+
+      /* FORM FIELDS */
+      .form-group {
+        margin-bottom: 1.3rem;
+      }
+      .form-group label {
+        display: block;
+        font-size: 0.6rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #666;
+        margin-bottom: 0.45rem;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        background: #000;
+        border: 1px solid #1a1a1a;
+        color: #fff;
+        font-family: inherit;
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+        outline: none;
+        transition: border-color 0.22s;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      .form-group select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+      }
+      .form-group input::placeholder {
+        color: #333;
+      }
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: #fff;
+      }
+      .form-group select option {
+        background: #000;
+        color: #fff;
+      }
+      .form-row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      @media (max-width: 420px) {
+        .form-row2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .err-msg {
+        font-size: 0.65rem;
+        color: #888;
+        letter-spacing: 0.1em;
+        margin-top: 4px;
+        display: none;
+      }
+      .err-msg.show {
+        display: block;
+      }
+      .field-err {
+        border-color: #555 !important;
+      }
+
+      /* SUBMIT BUTTON */
+      .modal-submit-btn {
+        width: 100%;
+        margin-top: 1.5rem;
+        border: 1px solid #fff;
+        background: #fff;
+        color: #000;
+        font-family: inherit;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        padding: 1rem;
+        cursor: pointer;
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+      .modal-submit-btn:hover {
+        background: #000;
+        color: #fff;
+      }
+      .modal-submit-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      /* STEP BTN */
+      .step-btn {
+        width: 100%;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        padding: 1rem;
+        border: 1px solid #fff;
+        background: #fff;
+        color: #000;
+        font-family: inherit;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+      .step-btn:hover {
+        background: #000;
+        color: #fff;
+      }
+      .step-btn.outline {
+        background: transparent;
+        color: #fff;
+      }
+      .step-btn.outline:hover {
+        background: #fff;
+        color: #000;
+      }
+      .step-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      /* RULES SCROLL */
+      .rules-scroll {
+        max-height: 240px;
+        overflow-y: auto;
+        border: 1px solid #1a1a1a;
+        padding: 1.2rem 1.4rem;
+        margin-bottom: 1.2rem;
+        scrollbar-width: thin;
+      }
+      .rule-group {
+        margin-bottom: 1.2rem;
+      }
+      .rule-group h4 {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+      .rule-group ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .rule-group ul li {
+        font-size: 0.8rem;
+        color: #666;
+        padding-left: 0.8rem;
+        border-left: 1px solid #222;
+        line-height: 1.6;
+      }
+      .agree-label {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 0.75rem;
+        color: #888;
+        margin-bottom: 1.2rem;
+        cursor: pointer;
+      }
+      .agree-label input {
+        accent-color: #fff;
+        width: 14px;
+        height: 14px;
+      }
+
+      /* UPLOAD SLOTS */
+      .cat-upload-section {
+        margin-bottom: 1.8rem;
+      }
+      .cat-upload-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.7rem;
+      }
+      .cat-upload-title {
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #fff;
+      }
+      .cat-upload-count {
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        color: #555;
+      }
+      .cat-upload-count.done {
+        color: #fff;
+      }
+      .cat-optional-badge {
+        font-size: 0.55rem;
+        letter-spacing: 0.15em;
+        color: #333;
+        text-transform: uppercase;
+        border: 1px solid #222;
+        padding: 2px 6px;
+      }
+      .upload-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.6rem;
+      }
+      .upload-slot {
+        cursor: pointer;
+        aspect-ratio: 1/1;
+      }
+      .upload-slot-inner {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #222;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.2s;
+        overflow: hidden;
+        background: #050505;
+      }
+      .upload-slot-inner:hover {
+        border-color: #fff;
+      }
+      .upload-slot-inner.filled {
+        border-color: #fff;
+      }
+      .upload-slot-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .plus {
+        font-size: 1.2rem;
+        color: #333;
+      }
+      .cat-err {
+        font-size: 0.65rem;
+        color: #888;
+        margin-top: 0.4rem;
+        display: none;
+        letter-spacing: 0.1em;
+      }
+      .cat-err.show {
+        display: block;
+      }
+
+      /* PROGRESS BAR */
+      .progress-bar {
+        display: flex;
+        gap: 0.4rem;
+        margin-bottom: 1.8rem;
+      }
+      .progress-step {
+        flex: 1;
+        height: 2px;
+        background: #111;
+        transition: background 0.3s;
+      }
+      .progress-step.active {
+        background: #fff;
+      }
+
+      /* SUCCESS */
+      .success-msg {
+        display: none;
+        text-align: center;
+        padding: 2rem 0;
+      }
+      .check-circle {
+        width: 56px;
+        height: 56px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.4rem;
+        font-size: 20px;
+        animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      @keyframes popIn {
+        from {
+          transform: scale(0);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .success-msg h3 {
+        font-family: Georgia, serif;
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-bottom: 0.6rem;
+      }
+      .success-msg p {
+        color: #555;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        line-height: 2;
+      }
+
+      /* LOADING SPINNER */
+      .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 1px solid #444;
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* NOTICE BOX */
+      .notice-box {
+        border: 1px solid #1a1a1a;
+        padding: 1rem 1.2rem;
+        margin-bottom: 1.2rem;
+        font-size: 0.75rem;
+        color: #555;
+        line-height: 1.7;
+      }
+      .notice-box strong {
+        color: #888;
+        display: block;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 0.3rem;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #000;
+        border-top: 1px solid #111;
+        padding: 5rem 6vw 2rem;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 3rem;
+        max-width: 1100px;
+        margin: 0 auto 4rem;
+      }
+      .footer-logo {
+        font-family: Georgia, serif;
+        font-size: 1.5rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.6rem;
+      }
+      .footer-tagline {
+        font-size: 0.75rem;
+        color: #444;
+        letter-spacing: 0.15em;
+        margin-bottom: 1.5rem;
+      }
+      .social-links {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+      .social-link {
+        width: 36px;
+        height: 36px;
+        border: 1px solid #1a1a1a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          color 0.2s;
+        cursor: pointer;
+      }
+      .social-link:hover {
+        border-color: #fff;
+        background: #fff;
+        color: #000;
+      }
+      .footer-col h4 {
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #fff;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid #111;
+      }
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .footer-links a {
+        font-size: 0.8rem;
+        color: #555;
+        transition: color 0.2s;
+        letter-spacing: 0.05em;
+      }
+      .footer-links a:hover {
+        color: #fff;
+      }
+      .contact-item {
+        display: flex;
+        gap: 0.7rem;
+        margin-bottom: 0.8rem;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .ci-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        color: #333;
+        text-transform: uppercase;
+        flex-shrink: 0;
+        padding-top: 0.15rem;
+        min-width: 44px;
+      }
+      .ci-val {
+        font-size: 0.8rem;
+        color: #555;
+        line-height: 1.5;
+      }
+      .ci-contact-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .ci-contact-person {
+        font-size: 0.8rem;
+        color: #555;
+        line-height: 1.5;
+      }
+      .ci-contact-person strong {
+        color: #666;
+        font-weight: 400;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        display: block;
+      }
+      .imp-dates {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .imp-dates li {
+        font-size: 0.8rem;
+        color: #555;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .imp-dates li .id-date {
+        font-size: 0.65rem;
+        color: #333;
+        letter-spacing: 0.1em;
+      }
+      .footer-bottom {
+        max-width: 1100px;
+        margin: 0 auto;
+        border-top: 1px solid #0d0d0d;
+        padding-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-bottom p {
+        font-size: 0.9rem;
+        color: #333;
+        letter-spacing: 0.1em;
+      }
+      @media (max-width: 900px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 500px) {
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.vis {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @media (max-width: 768px) {
+        section {
+          padding: 5rem 5vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav id="nav">
+      <div class="nav-logo">
+        <img src="./img/CORRECT CREST (2).png" alt="Richmond College Crest" />
+        <img src="./img/RCPS logo.png" alt="RCPS Logo" />
+        <div class="logo-text">
+          <span>Richmond College</span>
+          <small>Photographic Society</small>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#committee">Committee</a></li>
+        <li><a href="#submissions">Countdown</a></li>
+        <li><a href="#guidelines">Guidelines</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-btn" onclick="openRegModal()">Register</button>
+        <button class="nav-btn solid" onclick="openSubModal()">Submit</button>
+      </div>
+      <button id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div id="mobile-menu">
+      <a href="#hero" onclick="closeMobile()">Home</a>
+      <a href="#about" onclick="closeMobile()">About</a>
+      <a href="#committee" onclick="closeMobile()">Committee</a>
+      <a href="#submissions" onclick="closeMobile()">Countdown</a>
+      <a href="#guidelines" onclick="closeMobile()">Guidelines</a>
+      <button class="nav-btn" onclick="openRegModal()">Register</button>
+      <button
+        onclick="
+          openSubModal();
+          closeMobile();
+        "
+      >
+        Submit
+      </button>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="grid-bg"></div>
+      <div class="vignette"></div>
+      <div class="hero-content reveal">
+        <div class="hero-title">
+          <img src="./img/rcps logo-Recovered (1).png" alt="Luminate 26" />
+        </div>
+        <div class="hero-btns">
+          <button class="nav-btn" onclick="openRegModal()">Register</button>
+
+          <a href="#about" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div class="scroll-down">
+        <span>Scroll</span>
+        <div class="sd-line"></div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <span class="eyebrow">Who We Are</span>
+          <h2 class="section-title">About Us</h2>
+          <div class="title-line"></div>
+          <p class="section-sub">
+            The Photographic Society of Richmond College — a community built on
+            passion, vision, and the art of capturing the world.
+          </p>
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              The Photographic Society of Richmond College is one of the most
+              active and celebrated student societies on campus. Founded with
+              the belief that photography is more than just a technical skill —
+              it is a language, a means of expression, and a way of seeing the
+              world differently.
+            </p>
+            <p>
+              We bring together students from all disciplines who share a
+              passion for visual storytelling. Through workshops, field shoots,
+              exhibitions, and competitions, we nurture talent at every level —
+              from curious beginners to seasoned photographers.
+            </p>
+            <p>
+              Our society has consistently produced award-winning photographers
+              and continues to be a vibrant hub of creative energy at Richmond
+              College.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- LUMINATE -->
+    <section id="luminate">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <span class="eyebrow">The Event</span>
+          <h2 class="section-title">About Luminate</h2>
+          <div class="title-line"></div>
+        </div>
+        <div class="luminate-grid">
+          <div class="luminate-text reveal">
+            <p>
+              Luminate '26, organized by the Richmond College Photographic
+              Society, returns after 9 years as a celebration of creativity,
+              vision, and storytelling through photography.
+            </p>
+            <p>
+              Each year, Luminate sets a unique theme that challenges
+              participants to interpret the world through a fresh lens. The
+              event features a competitive photography showcase, judged by
+              industry professionals, alongside workshops, panel discussions,
+              and an open gallery.
+            </p>
+            <p>
+              Luminate is not just a competition — it is a festival of
+              photography that inspires, educates, and connects the creative
+              community of Sri Lanka.
+            </p>
+          </div>
+          <div class="luminate-highlights reveal">
+            <div class="highlight-item">
+              <h4>Photography Competition</h4>
+              <p>
+                Submit your best shots across multiple categories and compete
+                for top honours judged by professional photographers.
+              </p>
+            </div>
+            <div class="highlight-item">
+              <h4>Exhibition</h4>
+              <p>
+                Shortlisted works will be displayed in a curated gallery open to
+                the public throughout the event.
+              </p>
+            </div>
+            <div class="highlight-item">
+              <h4>Workshop</h4>
+              <p>
+                Hands-on sessions and panel discussions with industry
+                professionals covering technique, editing, and visual
+                storytelling.
+              </p>
+            </div>
+            <div class="highlight-item">
+              <h4>Awards Ceremony</h4>
+              <p>
+                A closing ceremony celebrating winners across all categories
+                with trophies, certificates, and special recognitions.
+              </p>
+            </div>
+            <div class="highlight-item">
+              <h4>Online Photography Competition</h4>
+              <p>
+                Participants can submit photographs under three categories:
+                Colour, Monochrome, and Mobile. All submissions will be
+                evaluated by three professional judges.
+              </p>
+            </div>
+            <div class="highlight-item">
+              <h4>On-Site Marathon</h4>
+              <p>
+                An exciting live competition with two categories: Event
+                Photography and Model Photography.
+              </p>
+            </div>
+            <div class="highlight-item">
+              <h4>Quiz Paper</h4>
+              <p>
+                A 60-minute written paper covering photography history,
+                terminology, famous photographers, general knowledge, and camera
+                equipment.
+              </p>
+            </div>
+            <div class="highlight-item">
+              <h4>Quiz Presentation</h4>
+              <p>
+                Teams are given a random photography-related topic and have 30
+                minutes to prepare a 5-minute presentation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- COMMITTEE -->
+    <section id="committee">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <span class="eyebrow">Leadership</span>
+          <h2 class="section-title">Our Committee</h2>
+          <div class="title-line"></div>
+          <p class="section-sub">The core team driving Luminate'26 forward.</p>
+        </div>
+        <div class="committee-grid reveal">
+          <div class="member-card">
+            <div class="member-name">Dasitha Thushan</div>
+            <div class="member-role">President</div>
+          </div>
+          <div class="member-card">
+            <div class="member-name">Dasindu Wijerathne</div>
+            <div class="member-role">Vice President</div>
+          </div>
+          <div class="member-card">
+            <div class="member-name">Kavitha Nanayakkara</div>
+            <div class="member-role">Secretary</div>
+          </div>
+          <div class="member-card">
+            <div class="member-name">Methuja</div>
+            <div class="member-role">Assistant Secretary</div>
+          </div>
+          <div class="member-card">
+            <div class="member-name">Tharindu Amarasekara</div>
+            <div class="member-role">Treasurer</div>
+          </div>
+          <div class="member-card">
+            <div class="member-name">Onara Damath</div>
+            <div class="member-role">Treasurer</div>
+          </div>
+          <div class="member-card">
+            <div class="member-name">Sudila Induwara</div>
+            <div class="member-role">Chief Organizer</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- OTHER COMMITTEE -->
+    <section id="other-committee">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <span class="eyebrow">Supporting Roles</span>
+          <h2 class="section-title">Other Committee</h2>
+          <div class="title-line"></div>
+        </div>
+        <div class="other-grid reveal">
+          <div class="other-card">
+            <div class="oc-name">Sandupa Induthara</div>
+            <div class="oc-role"></div>
+          </div>
+          <div class="other-card">
+            <div class="oc-name">Pehan Ransew</div>
+            <div class="oc-role"></div>
+          </div>
+          <div class="other-card">
+            <div class="oc-name">Mohomad Amaal</div>
+            <div class="oc-role"></div>
+          </div>
+          <div class="other-card">
+            <div class="oc-name">Sarith</div>
+            <div class="oc-role"></div>
+          </div>
+          <div class="other-card">
+            <div class="oc-name">Harindu</div>
+            <div class="oc-role"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SUBMISSIONS -->
+    <section id="submissions">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <span class="eyebrow">Submissions</span>
+          <h2 class="section-title">Submit Your Work</h2>
+          <div class="title-line"></div>
+          <p class="section-sub">
+            Time is running out. Submissions close on 13 May 2026.
+          </p>
+        </div>
+        <div class="countdown-wrap reveal">
+          <div class="cd-block">
+            <span class="cd-num" id="cd-days">00</span
+            ><span class="cd-label">Days</span>
+          </div>
+          <div class="cd-block">
+            <span class="cd-num" id="cd-hours">00</span
+            ><span class="cd-label">Hours</span>
+          </div>
+          <div class="cd-block">
+            <span class="cd-num" id="cd-mins">00</span
+            ><span class="cd-label">Minutes</span>
+          </div>
+          <div class="cd-block">
+            <span class="cd-num" id="cd-secs">00</span
+            ><span class="cd-label">Seconds</span>
+          </div>
+        </div>
+        <div class="submissions-content">
+          <div class="sub-info reveal">
+            <p>
+              All entries must be submitted digitally through the official
+              submission portal by the stated deadline. Late entries will not be
+              accepted under any circumstances.
+            </p>
+            <p>
+              Each participant may submit up to four photographs per category.
+              Photographs must be original works taken by the submitting
+              participant.
+            </p>
+            <button
+              class="btn btn-primary"
+              onclick="openSubModal()"
+              style="font-size: 0.65rem; letter-spacing: 0.3em"
+            >
+              Submit Entry
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CATEGORIES -->
+    <section id="categories">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <span class="eyebrow">Competition</span>
+          <h2 class="section-title">Competition Categories</h2>
+          <div class="title-line"></div>
+          <p class="section-sub">
+            Three distinct categories — each a different way of seeing the
+            world.
+          </p>
+        </div>
+        <div class="cat-grid reveal">
+          <div class="cat-card">
+            <div class="cat-num">01</div>
+            <div class="cat-name">Colour</div>
+            <div class="cat-desc">
+              Photographs submitted in full colour. Any subject matter —
+              showcasing the richness and depth that colour brings to a frame.
+            </div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-num">02</div>
+            <div class="cat-name">Monochrome</div>
+            <div class="cat-desc">
+              Black &amp; white photography. Stripped of colour, every
+              composition must stand on light, shadow, texture, and form alone.
+            </div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-num">03</div>
+            <div class="cat-name">Mobile</div>
+            <div class="cat-desc">
+              Shot entirely on a mobile device. A celebration of accessible
+              photography and the power of the camera in your pocket.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- GUIDELINES -->
+    <section id="guidelines">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <span class="eyebrow">Rules &amp; Regulations</span>
+          <h2 class="section-title">Competition Guidelines</h2>
+          <div class="title-line"></div>
+        </div>
+        <div class="guidelines-grid">
+          <div class="reveal">
+            <div class="guideline-group">
+              <h3>Submission Guidelines</h3>
+              <ul class="guideline-list">
+                <li>Maximum 04 photographs per category</li>
+                <li>
+                  Submit photos in JPEG format (.jpg/.jpeg), max file size: 10MB
+                </li>
+                <li>No watermarks, date stamps, names, or logos on images</li>
+                <li>
+                  Basic editing (cropping, exposure, contrast, masking) allowed
+                </li>
+                <li>
+                  AI images, manipulation images, or over-editing will be
+                  disqualified without announcement
+                </li>
+                <li>Previously awarded entries will be disqualified</li>
+                <li>
+                  Entries must be original. Participants may be asked to provide
+                  the RAW or unedited file upon request
+                </li>
+                <li>Resize your photograph to 1920 × 1080 resolution</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">LUMINATE'26</div>
+          <div class="footer-tagline">
+            Photographic Society of Richmond College
+          </div>
+          <div class="social-links">
+            <a class="social-link" href="#" title="Instagram">in</a>
+            <a class="social-link" href="#" title="Facebook">f</a>
+            <a class="social-link" href="#" title="Twitter">𝕏</a>
+            <a class="social-link" href="#" title="YouTube">▶</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#luminate">About Luminate</a></li>
+            <li><a href="#committee">Committee</a></li>
+            <li><a href="#submissions">Submissions</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#guidelines">Guidelines</a></li>
+            <li>
+              <a
+                href="#"
+                onclick="
+                  openSubModal();
+                  return false;
+                "
+                >Submit</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-item">
+            <span class="ci-label">Email</span
+            ><span class="ci-val">rcps@richmondcollege.lk</span>
+          </div>
+          <div class="contact-item">
+            <span class="ci-label">Phone</span>
+            <div class="ci-contact-group">
+              <span class="ci-contact-person"
+                ><strong>Dasitha</strong>07771959212</span
+              >
+              <span class="ci-contact-person"
+                ><strong>Kavitha</strong>07763722686</span
+              >
+              <span class="ci-contact-person"
+                ><strong>Methuja</strong>07717596432</span
+              >
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ci-label">Address</span
+            ><span class="ci-val"
+              >Richmond College,<br />Galle, Sri Lanka.</span
+            >
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Important Dates</h4>
+          <ul class="imp-dates">
+            <li>
+              <span>Registrations Open</span
+              ><span class="id-date">05 May 2026</span>
+            </li>
+            <li>
+              <span>Submission Deadline</span
+              ><span class="id-date">13 May 2026</span>
+            </li>
+            <li>
+              <span>Photography Day</span
+              ><span class="id-date">13 Jun 2026</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p style="color: #979797">
+          © 2026 LUMINATE'26 — Photographic Society of Richmond College. All
+          rights reserved.
+        </p>
+        <p style="color: #ffffff">
+          <a href="https://kngine.richmondcollege.lk/" target="_blank"
+            >Designed and Developed by RITS</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <!-- REGISTER MODAL -->
+    <div id="reg-modal-overlay" class="modal-overlay">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeRegModal()">&#x2715;</button>
+
+        <div id="reg-form-wrap">
+          <div class="m-eyebrow">Luminate'26 · Richmond College</div>
+          <div class="m-title">Register</div>
+          <div class="m-sub">Secure your place at Luminate'26</div>
+          <div class="m-divider"></div>
+
+          <div class="form-group">
+            <label for="reg-fullname">Full Name</label>
+            <input
+              type="text"
+              id="reg-fullname"
+              placeholder="Jane Smith"
+              autocomplete="name"
+            />
+            <div class="err-msg" id="reg-fullname-err">Required.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-printname">Name to Print on Certificate</label>
+            <input type="text" id="reg-printname" placeholder="Jane A. Smith" />
+            <div class="err-msg" id="reg-printname-err">Required.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-email">Email Address</label>
+            <input
+              type="email"
+              id="reg-email"
+              placeholder="jane@school.lk"
+              autocomplete="email"
+            />
+            <div class="err-msg" id="reg-email-err">Enter a valid email.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-school">School Name</label>
+            <input type="text" id="reg-school" placeholder="Your school name" />
+            <div class="err-msg" id="reg-school-err">Required.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-contact">Your WhatsApp Number</label>
+            <input
+              type="tel"
+              id="reg-contact"
+              placeholder="+94 77 000 0000"
+              autocomplete="tel"
+            />
+            <div class="err-msg" id="reg-contact-err">
+              Enter a valid number.
+            </div>
+          </div>
+
+          <div class="form-row2">
+            <div class="form-group">
+              <label for="reg-presname">President's Name</label>
+              <input
+                type="text"
+                id="reg-presname"
+                placeholder="President's full name"
+              />
+              <div class="err-msg" id="reg-presname-err">Required.</div>
+            </div>
+            <div class="form-group">
+              <label for="reg-prescontact">President's Contact</label>
+              <input
+                type="tel"
+                id="reg-prescontact"
+                placeholder="+94 77 000 0000"
+              />
+              <div class="err-msg" id="reg-prescontact-err">
+                Enter a valid number.
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="modal-submit-btn"
+            id="reg-submit-btn"
+            onclick="handleRegSubmit()"
+          >
+            Register Now
+          </button>
+        </div>
+
+        <div class="success-msg" id="reg-success">
+          <div class="check-circle">✓</div>
+          <h3>Registration Confirmed</h3>
+          <p>
+            Welcome to Luminate'26,<br /><strong
+              id="reg-conf-name"
+              style="color: #fff"
+            ></strong>
+          </p>
+          <p style="margin-top: 0.8rem">
+            Confirmation details saved.<br />We look forward to seeing your
+            work.<br />Good luck.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT MODAL -->
+    <div id="sub-modal-overlay" class="modal-overlay">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeSubModal()">&#x2715;</button>
+
+        <!-- RULES -->
+        <div id="step-rules">
+          <div class="m-eyebrow">Luminate'26 · Submission Portal</div>
+          <div class="m-title">Submission Rules</div>
+          <div class="m-sub">Please read carefully before submitting</div>
+          <div class="m-divider"></div>
+          <div class="rules-scroll">
+            <div class="rule-group">
+              <h4>Submission Guidelines</h4>
+              <ul>
+                <li>Maximum 04 photographs per category</li>
+                <li>
+                  Submit photos in JPEG format (.jpg/.jpeg), max file size: 10MB
+                </li>
+                <li>No watermarks, date stamps, names, or logos on images</li>
+                <li>
+                  Basic editing (cropping, exposure, contrast, masking) allowed
+                </li>
+                <li>
+                  AI images, manipulation images, or over-editing will be
+                  disqualified without announcement
+                </li>
+                <li>Previously awarded entries will be disqualified</li>
+                <li>
+                  Entries must be original. Participants may be asked to provide
+                  the RAW or unedited file upon request
+                </li>
+                <li>Resize your photograph to 1920 × 1080 resolution</li>
+              </ul>
+            </div>
+            <div class="rule-group">
+              <h4>Categories</h4>
+              <ul>
+                <li><strong>Colour</strong></li>
+                <li><strong>Monochrome</strong></li>
+                <li><strong>Mobile</strong></li>
+              </ul>
+            </div>
+          </div>
+          <label class="agree-label">
+            <input type="checkbox" id="agree-check" />
+            <span>I have read and agree to all the rules above</span>
+          </label>
+          <button class="step-btn" id="rules-next-btn" disabled>
+            Continue to Upload
+          </button>
+        </div>
+
+        <!-- PHOTOS -->
+        <div id="step-photos" style="display: none">
+          <div class="m-eyebrow">Step 2 of 3</div>
+          <div class="m-title">Upload Photos</div>
+          <div class="m-sub">
+            4 JPEG photos per category — complete at least 1 category
+          </div>
+          <div class="m-divider"></div>
+
+          <div class="notice-box">
+            <strong>How it works</strong>
+            Photos upload directly to Google Drive. You need to complete all 4
+            slots in at least one category to continue.
+          </div>
+
+          <!-- Colour -->
+          <div class="cat-upload-section">
+            <div class="cat-upload-header">
+              <span class="cat-upload-title">Colour</span>
+              <div style="display: flex; gap: 0.6rem; align-items: center">
+                <span class="cat-optional-badge">Optional</span>
+                <span class="cat-upload-count" id="color-count">0 / 4</span>
+              </div>
+            </div>
+            <div class="upload-grid" id="color-grid">
+              <div class="upload-slot" onclick="triggerUpload('color', 0)">
+                <div class="upload-slot-inner" id="color-slot-0">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+              <div class="upload-slot" onclick="triggerUpload('color', 1)">
+                <div class="upload-slot-inner" id="color-slot-1">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+              <div class="upload-slot" onclick="triggerUpload('color', 2)">
+                <div class="upload-slot-inner" id="color-slot-2">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+              <div class="upload-slot" onclick="triggerUpload('color', 3)">
+                <div class="upload-slot-inner" id="color-slot-3">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+            </div>
+            <div class="cat-err" id="color-err">
+              Please upload all 4 photos or leave this category empty.
+            </div>
+          </div>
+
+          <!-- Monochrome -->
+          <div class="cat-upload-section">
+            <div class="cat-upload-header">
+              <span class="cat-upload-title">Monochrome</span>
+              <div style="display: flex; gap: 0.6rem; align-items: center">
+                <span class="cat-optional-badge">Optional</span>
+                <span class="cat-upload-count" id="mono-count">0 / 4</span>
+              </div>
+            </div>
+            <div class="upload-grid">
+              <div class="upload-slot" onclick="triggerUpload('mono', 0)">
+                <div class="upload-slot-inner" id="mono-slot-0">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+              <div class="upload-slot" onclick="triggerUpload('mono', 1)">
+                <div class="upload-slot-inner" id="mono-slot-1">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+              <div class="upload-slot" onclick="triggerUpload('mono', 2)">
+                <div class="upload-slot-inner" id="mono-slot-2">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+              <div class="upload-slot" onclick="triggerUpload('mono', 3)">
+                <div class="upload-slot-inner" id="mono-slot-3">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+            </div>
+            <div class="cat-err" id="mono-err">
+              Please upload all 4 photos or leave this category empty.
+            </div>
+          </div>
+
+          <!-- Mobile -->
+          <div class="cat-upload-section">
+            <div class="cat-upload-header">
+              <span class="cat-upload-title">Mobile</span>
+              <div style="display: flex; gap: 0.6rem; align-items: center">
+                <span class="cat-optional-badge">Optional</span>
+                <span class="cat-upload-count" id="mobile-count">0 / 4</span>
+              </div>
+            </div>
+            <div class="upload-grid">
+              <div class="upload-slot" onclick="triggerUpload('mobile', 0)">
+                <div class="upload-slot-inner" id="mobile-slot-0">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+              <div class="upload-slot" onclick="triggerUpload('mobile', 1)">
+                <div class="upload-slot-inner" id="mobile-slot-1">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+              <div class="upload-slot" onclick="triggerUpload('mobile', 2)">
+                <div class="upload-slot-inner" id="mobile-slot-2">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+              <div class="upload-slot" onclick="triggerUpload('mobile', 3)">
+                <div class="upload-slot-inner" id="mobile-slot-3">
+                  <span class="plus">+</span>
+                </div>
+              </div>
+            </div>
+            <div class="cat-err" id="mobile-err">
+              Please upload all 4 photos or leave this category empty.
+            </div>
+          </div>
+
+          <input
+            type="file"
+            id="file-input"
+            accept="image/jpeg"
+            style="display: none"
+          />
+          <div class="cat-err" id="min-cat-err" style="margin-top: 0.8rem">
+            Please complete at least one full category (4 photos).
+          </div>
+          <button
+            class="step-btn"
+            id="photos-next-btn"
+            disabled
+            style="margin-top: 1rem"
+          >
+            Continue to Details
+          </button>
+        </div>
+
+        <!-- DETAILS -->
+        <div id="step-details" style="display: none">
+          <div class="m-eyebrow">Step 3 of 3</div>
+          <div class="m-title">Your Details</div>
+          <div class="m-sub">Photographic Society of Richmond College</div>
+          <div class="m-divider"></div>
+
+          <div class="form-group">
+            <label for="sub-fullname">Full Name</label>
+            <input
+              type="text"
+              id="sub-fullname"
+              placeholder="Jane Smith"
+              autocomplete="name"
+            />
+            <div class="err-msg" id="sub-fullname-err">Required.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="sub-printname">Name to Print on Certificate</label>
+            <input type="text" id="sub-printname" placeholder="Jane A. Smith" />
+            <div class="err-msg" id="sub-printname-err">Required.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="sub-email">Email Address</label>
+            <input
+              type="email"
+              id="sub-email"
+              placeholder="jane@school.lk"
+              autocomplete="email"
+            />
+            <div class="err-msg" id="sub-email-err">Enter a valid email.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="sub-school">School Name</label>
+            <input type="text" id="sub-school" placeholder="Your school name" />
+            <div class="err-msg" id="sub-school-err">Required.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="sub-contact">Your WhatsApp Number</label>
+            <input
+              type="tel"
+              id="sub-contact"
+              placeholder="+94 77 000 0000"
+              autocomplete="tel"
+            />
+            <div class="err-msg" id="sub-contact-err">
+              Enter a valid number.
+            </div>
+          </div>
+
+          <div class="form-row2">
+            <div class="form-group">
+              <label for="sub-presname">President's Name</label>
+              <input
+                type="text"
+                id="sub-presname"
+                placeholder="President's full name"
+              />
+              <div class="err-msg" id="sub-presname-err">Required.</div>
+            </div>
+            <div class="form-group">
+              <label for="sub-prescontact">President's Contact</label>
+              <input
+                type="tel"
+                id="sub-prescontact"
+                placeholder="+94 77 000 0000"
+              />
+              <div class="err-msg" id="sub-prescontact-err">
+                Enter a valid number.
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="modal-submit-btn"
+            id="submit-btn"
+            onclick="handleSubSubmit()"
+          >
+            Submit Entry
+          </button>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="success-msg" id="sub-success">
+          <div class="check-circle">✓</div>
+          <h3>Entry Received</h3>
+          <p>
+            Your photos have been uploaded to Google Drive.<br />Details saved
+            successfully.
+          </p>
+          <p style="margin-top: 0.8rem">
+            We'll be in touch soon.<br />Good luck at Luminate'26.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("isRegistered") === "true") {
+          document.querySelectorAll(".nav-btn").forEach((btn) => {
+            if (btn.textContent === "Register") {
+              btn.textContent = "Registered ✓";
+              btn.onclick = null;
+            }
+          });
+
+          const savedName = localStorage.getItem("registeredName");
+          if (document.getElementById("sub-fullname")) {
+            document.getElementById("sub-fullname").value = savedName;
+          }
+        }
+      });
+      if (localStorage.getItem("isSubmitted") === "true") {
+        document.querySelectorAll(".nav-btn, .btn").forEach((btn) => {
+          if (
+            btn.textContent.trim() === "Submit" ||
+            btn.textContent.trim() === "Submit Entry"
+          ) {
+            btn.textContent = "Submitted ✓";
+            btn.onclick = null;
+            btn.style.cursor = "default";
+            btn.style.opacity = "0.6";
+          }
+        });
+      }
+
+      const REG_SUPABASE_URL = "https://fxdclpvucyoavajpgztw.supabase.co";
+      const REG_SUPABASE_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ4ZGNscHZ1Y3lvYXZhanBnenR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5NDI0ODYsImV4cCI6MjA5MzUxODQ4Nn0.nEpUY4TayXvevy7JnoBPRnkx1w-QFce7YPxNejptDVc";
+
+      const GDRIVE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbzBSTT74bJIlV9tYbvj7cyj_yuXGcWf-vIw8CuRfvhF9qOIgabHFeMhGSgISWuBlO-60g/exec";
+
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("nav")
+          .classList.toggle("scrolled", window.scrollY > 40);
+      });
+
+      // HAMBURGER
+      const hbg = document.getElementById("hamburger");
+      const mm = document.getElementById("mobile-menu");
+      hbg.addEventListener("click", () => {
+        hbg.classList.toggle("open");
+        mm.classList.toggle("open");
+        document.body.style.overflow = mm.classList.contains("open")
+          ? "hidden"
+          : "";
+      });
+      function closeMobile() {
+        hbg.classList.remove("open");
+        mm.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      // COUNTDOWN
+      const TARGET = new Date("2026-05-13T00:00:00");
+      function updateCD() {
+        const diff = TARGET - new Date();
+        if (diff <= 0) {
+          ["days", "hours", "mins", "secs"].forEach(
+            (id) => (document.getElementById("cd-" + id).textContent = "00"),
+          );
+          return;
+        }
+        const pad = (n) => String(n).padStart(2, "0");
+        document.getElementById("cd-days").textContent = pad(
+          Math.floor(diff / 86400000),
+        );
+        document.getElementById("cd-hours").textContent = pad(
+          Math.floor((diff % 86400000) / 3600000),
+        );
+        document.getElementById("cd-mins").textContent = pad(
+          Math.floor((diff % 3600000) / 60000),
+        );
+        document.getElementById("cd-secs").textContent = pad(
+          Math.floor((diff % 60000) / 1000),
+        );
+      }
+      updateCD();
+      setInterval(updateCD, 1000);
+
+      // SCROLL REVEAL
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("vis");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+      // MODAL HELPERS
+      function openRegModal() {
+        document.getElementById("reg-modal-overlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeRegModal() {
+        document.getElementById("reg-modal-overlay").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function openSubModal() {
+        if (localStorage.getItem("isSubmitted") === "true") {
+          alert("You have already submitted your entry for Luminate'26.");
+          return;
+        }
+        document.getElementById("sub-modal-overlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeSubModal() {
+        document.getElementById("sub-modal-overlay").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      document
+        .getElementById("reg-modal-overlay")
+        .addEventListener("click", (e) => {
+          if (e.target.id === "reg-modal-overlay") closeRegModal();
+        });
+      document
+        .getElementById("sub-modal-overlay")
+        .addEventListener("click", (e) => {
+          if (e.target.id === "sub-modal-overlay") closeSubModal();
+        });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeRegModal();
+          closeSubModal();
+        }
+      });
+
+      // REGISTER MODAL
+      const regFields = [
+        "fullname",
+        "printname",
+        "email",
+        "school",
+        "contact",
+        "presname",
+        "prescontact",
+      ];
+
+      function regSetErr(id, show) {
+        document
+          .getElementById("reg-" + id)
+          .classList.toggle("field-err", show);
+        document
+          .getElementById("reg-" + id + "-err")
+          .classList.toggle("show", show);
+      }
+
+      regFields.forEach((id) => {
+        document
+          .getElementById("reg-" + id)
+          .addEventListener("input", () => regSetErr(id, false));
+      });
+
+      async function handleRegSubmit() {
+        const vals = {};
+        regFields.forEach(
+          (id) =>
+            (vals[id] = document.getElementById("reg-" + id).value.trim()),
+        );
+
+        let ok = true;
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vals.email);
+        const phoneOk = (v) => v.replace(/\D/g, "").length >= 7;
+
+        regFields.forEach((id) => {
+          let err = !vals[id];
+          if (id === "email") err = !emailOk;
+          if (id === "contact" || id === "prescontact")
+            err = !phoneOk(vals[id]);
+          regSetErr(id, err);
+          if (err) ok = false;
+        });
+
+        if (!ok) return;
+
+        const btn = document.getElementById("reg-submit-btn");
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>Registering…';
+
+        try {
+          const res = await fetch(`${REG_SUPABASE_URL}/rest/v1/registrations`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              apikey: REG_SUPABASE_KEY,
+              Authorization: `Bearer ${REG_SUPABASE_KEY}`,
+              Prefer: "return=minimal",
+            },
+            body: JSON.stringify({
+              full_name: vals.fullname,
+              print_name: vals.printname,
+              email: vals.email,
+              school: vals.school,
+              contact: vals.contact,
+              president_name: vals.presname,
+              president_contact: vals.prescontact,
+            }),
+          });
+
+          if (!res.ok) {
+            const errText = await res.text();
+            throw new Error("HTTP " + res.status + ": " + errText);
+          }
+
+          document.getElementById("reg-form-wrap").style.display = "none";
+          document.getElementById("reg-conf-name").textContent = vals.fullname;
+          document.getElementById("reg-success").style.display = "block";
+        } catch (err) {
+          console.error(err);
+          btn.disabled = false;
+          btn.textContent = "Register Now";
+          alert("Error: " + err.message);
+        }
+        localStorage.setItem("isRegistered", "true");
+        localStorage.setItem("registeredName", vals.fullname);
+      }
+
+      // SUBMIT MODAL
+      document
+        .getElementById("agree-check")
+        .addEventListener("change", function () {
+          document.getElementById("rules-next-btn").disabled = !this.checked;
+        });
+
+      document
+        .getElementById("rules-next-btn")
+        .addEventListener("click", () => {
+          document.getElementById("step-rules").style.display = "none";
+          document.getElementById("step-photos").style.display = "block";
+          document.querySelector("#sub-modal-overlay .modal-box").scrollTop = 0;
+        });
+
+      document
+        .getElementById("photos-next-btn")
+        .addEventListener("click", () => {
+          let valid = true;
+          let atLeastOne = false;
+
+          ["color", "mono", "mobile"].forEach((cat) => {
+            const count = uploads[cat].filter(Boolean).length;
+            if (count > 0 && count < 4) {
+              document.getElementById(cat + "-err").classList.add("show");
+              valid = false;
+            } else {
+              document.getElementById(cat + "-err").classList.remove("show");
+            }
+            if (count === 4) atLeastOne = true;
+          });
+
+          if (!atLeastOne) {
+            document.getElementById("min-cat-err").classList.add("show");
+            valid = false;
+          } else {
+            document.getElementById("min-cat-err").classList.remove("show");
+          }
+
+          if (!valid) return;
+
+          document.getElementById("step-photos").style.display = "none";
+          document.getElementById("step-details").style.display = "block";
+          document.querySelector("#sub-modal-overlay .modal-box").scrollTop = 0;
+        });
+
+      // UPLOAD
+      const uploads = {
+        color: [null, null, null, null],
+        mono: [null, null, null, null],
+        mobile: [null, null, null, null],
+      };
+      let currentCat = null,
+        currentSlot = null;
+
+      function triggerUpload(cat, slot) {
+        currentCat = cat;
+        currentSlot = slot;
+        const input = document.getElementById("file-input");
+        input.value = "";
+        input.click();
+      }
+
+      document
+        .getElementById("file-input")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          if (!file) return;
+          if (file.type !== "image/jpeg") {
+            alert("Please upload a JPEG file only.");
+            return;
+          }
+          if (file.size > 20 * 1024 * 1024) {
+            alert("File too large. Maximum size is 20 MB.");
+            return;
+          }
+
+          uploads[currentCat][currentSlot] = file;
+
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            const slot = document.getElementById(
+              currentCat + "-slot-" + currentSlot,
+            );
+            slot.innerHTML = `<img src="${ev.target.result}" alt="preview"/>`;
+            slot.classList.add("filled");
+          };
+          reader.readAsDataURL(file);
+
+          updateCatCount(currentCat);
+          document.getElementById(currentCat + "-err").classList.remove("show");
+          document.getElementById("min-cat-err").classList.remove("show");
+        });
+
+      function updateCatCount(cat) {
+        const count = uploads[cat].filter(Boolean).length;
+        const el = document.getElementById(cat + "-count");
+        el.textContent = `${count} / 4`;
+        el.classList.toggle("done", count === 4);
+
+        const atLeastOne = ["color", "mono", "mobile"].some(
+          (c) => uploads[c].filter(Boolean).length === 4,
+        );
+        document.getElementById("photos-next-btn").disabled = !atLeastOne;
+      }
+
+      // SUBMIT FORM
+      const subFields = [
+        "fullname",
+        "printname",
+        "email",
+        "school",
+        "contact",
+        "presname",
+        "prescontact",
+      ];
+
+      function subSetErr(id, show) {
+        document
+          .getElementById("sub-" + id)
+          .classList.toggle("field-err", show);
+        document
+          .getElementById("sub-" + id + "-err")
+          .classList.toggle("show", show);
+      }
+
+      subFields.forEach((id) => {
+        document
+          .getElementById("sub-" + id)
+          .addEventListener("input", () => subSetErr(id, false));
+      });
+
+      async function handleSubSubmit() {
+        const vals = {};
+        subFields.forEach(
+          (id) =>
+            (vals[id] = document.getElementById("sub-" + id).value.trim()),
+        );
+
+        let ok = true;
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vals.email);
+        const phoneOk = (v) => v.replace(/\D/g, "").length >= 7;
+
+        subFields.forEach((id) => {
+          let err = !vals[id];
+          if (id === "email") err = !emailOk;
+          if (id === "contact" || id === "prescontact")
+            err = !phoneOk(vals[id]);
+          subSetErr(id, err);
+          if (err) ok = false;
+        });
+
+        if (!ok) return;
+
+        const btn = document.getElementById("submit-btn");
+        btn.disabled = true;
+        btn.innerHTML =
+          '<span class="spinner"></span>Uploading to Google Drive…';
+
+        try {
+          const filePayload = [];
+          const photoMeta = {};
+
+          for (const cat of ["color", "mono", "mobile"]) {
+            const catFiles = uploads[cat].filter(Boolean);
+            if (catFiles.length === 0) continue;
+
+            photoMeta[cat] = catFiles.length;
+
+            for (let i = 0; i < catFiles.length; i++) {
+              const file = catFiles[i];
+              const base64 = await fileToBase64(file);
+              filePayload.push({
+                name: `${vals.fullname}_${cat}_${i + 1}.jpg`,
+                data: base64,
+                category: cat,
+              });
+            }
+          }
+
+          btn.innerHTML = '<span class="spinner"></span>Saving to Drive…';
+
+          const driveRes = await fetch(GDRIVE_SCRIPT_URL, {
+            method: "POST",
+            body: JSON.stringify({
+              name: vals.fullname,
+              school: vals.school,
+              email: vals.email,
+              files: filePayload,
+            }),
+          });
+
+          const driveData = await driveRes.json();
+          if (!driveData.success)
+            throw new Error(
+              "Drive upload failed: " + JSON.stringify(driveData),
+            );
+
+          btn.innerHTML = '<span class="spinner"></span>Saving details…';
+
+          const dbRes = await fetch(`${REG_SUPABASE_URL}/rest/v1/submissions`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              apikey: REG_SUPABASE_KEY,
+              Authorization: `Bearer ${REG_SUPABASE_KEY}`,
+              Prefer: "return=minimal",
+            },
+            body: JSON.stringify({
+              full_name: vals.fullname,
+              print_name: vals.printname,
+              email: vals.email,
+              school: vals.school,
+              contact: vals.contact,
+              president_name: vals.presname,
+              president_contact: vals.prescontact,
+              drive_folder_url: driveData.folderUrl || "",
+              categories_submitted: Object.keys(photoMeta).join(", "),
+            }),
+          });
+
+          if (!dbRes.ok) throw new Error(await dbRes.text());
+
+          document.getElementById("step-details").style.display = "none";
+          document.getElementById("sub-success").style.display = "block";
+          localStorage.setItem("isSubmitted", "true");
+        } catch (err) {
+          console.error(err);
+          btn.disabled = false;
+          btn.textContent = "Submit Entry";
+          alert("Something went wrong. Please try again.\n\n" + err.message);
+        }
+      }
+
+      function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target.result.split(",")[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+      // Developed by Thenuka...
+    </script>
+  </body>
+</html>
