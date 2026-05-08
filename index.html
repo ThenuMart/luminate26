@@ -266,7 +266,7 @@
         overflow: hidden;
         padding: 80px 2rem 4rem;
         text-align: center;
-        background-image: url(img/Drone\ Shot\ 2.jpeg);
+        /* background-image: url(img/Drone\ Shot\ 2.jpeg);*/
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -1607,6 +1607,10 @@
             <div class="oc-name">Harindu Thirasara</div>
             <div class="oc-role"></div>
           </div>
+          <div class="other-card">
+            <div class="oc-name">Methuja Sathmika</div>
+            <div class="oc-role"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -2052,7 +2056,6 @@
                 </div>
               </div>
             </div>
-            
           </div>
 
           <!-- Monochrome -->
@@ -2086,7 +2089,6 @@
                 </div>
               </div>
             </div>
-            
           </div>
 
           <!-- Mobile -->
@@ -2120,7 +2122,6 @@
                 </div>
               </div>
             </div>
-            
           </div>
 
           <input
@@ -2129,12 +2130,15 @@
             accept="image/jpeg"
             style="display: none"
           />
-          
+
           <button
             class="step-btn"
+            type="button"
             id="photos-next-btn"
-            disabled
-            style="margin-top: 1rem"
+            onclick="
+              document.getElementById('step-photos').style.display = 'none';
+              document.getElementById('step-details').style.display = 'block';
+            "
           >
             Continue to Details
           </button>
@@ -2271,6 +2275,46 @@
         });
       }
 
+      window.addEventListener("DOMContentLoaded", () => {
+        const nextBtn = document.getElementById("photos-next-btn");
+
+        if (!nextBtn) {
+          console.error("Button not found");
+          return;
+        }
+
+        nextBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          let atLeastOne = false;
+
+          ["color", "mono", "mobile"].forEach((cat) => {
+            const count = uploads[cat].filter(Boolean).length;
+
+            if (count > 0) atLeastOne = true;
+          });
+
+          if (!atLeastOne) {
+            document.getElementById("min-cat-err").classList.add("show");
+            return;
+          }
+
+          document.getElementById("min-cat-err").classList.remove("show");
+
+          const photos = document.getElementById("step-photos");
+          const details = document.getElementById("step-details");
+
+          if (!photos || !details) {
+            console.error("Missing step elements");
+            return;
+          }
+
+          photos.style.display = "none";
+          details.style.display = "block";
+
+          console.log("Switched to details step");
+        });
+      });
       const REG_SUPABASE_URL = "https://fxdclpvucyoavajpgztw.supabase.co";
       const REG_SUPABASE_KEY =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ4ZGNscHZ1Y3lvYXZhanBnenR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5NDI0ODYsImV4cCI6MjA5MzUxODQ4Nn0.nEpUY4TayXvevy7JnoBPRnkx1w-QFce7YPxNejptDVc";
@@ -2485,32 +2529,6 @@
           document.querySelector("#sub-modal-overlay .modal-box").scrollTop = 0;
         });
 
-      document
-        .getElementById("photos-next-btn")
-        .addEventListener("click", () => {
-          let valid = true;
-          let atLeastOne = false;
-
-          ["color", "mono", "mobile"].forEach((cat) => {
-            const count = uploads[cat].filter(Boolean).length;
-            document.getElementById(cat + "-err").classList.remove("show");
-            if (count > 0) atLeastOne = true;
-          });
-
-          if (!atLeastOne) {
-            document.getElementById("min-cat-err").classList.add("show");
-            valid = false;
-          } else {
-            document.getElementById("min-cat-err").classList.remove("show");
-          }
-
-          if (!valid) return;
-
-          document.getElementById("step-photos").style.display = "none";
-          document.getElementById("step-details").style.display = "block";
-          document.querySelector("#sub-modal-overlay .modal-box").scrollTop = 0;
-        });
-
       // UPLOAD
       const uploads = {
         color: [null, null, null, null],
@@ -2562,12 +2580,14 @@
       function updateCatCount(cat) {
         const count = uploads[cat].filter(Boolean).length;
         const el = document.getElementById(cat + "-count");
+
         el.textContent = `${count} / 4`;
         el.classList.toggle("done", count === 4);
 
         const atLeastOne = ["color", "mono", "mobile"].some(
-          (c) => uploads[c].filter(Boolean).length === 4,
+          (c) => uploads[c].filter(Boolean).length > 0,
         );
+
         document.getElementById("photos-next-btn").disabled = !atLeastOne;
       }
 
